@@ -3,9 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-import serverless from "serverless-http";
 
-var apiRouter = require('./routes/api');
+var apiRouter = require('./src/routes/api');
 
 var app = express();
 
@@ -18,9 +17,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // API Router
 app.use('/api', apiRouter);
+app.use('/users', usersRouter);
 
-// app.listen(3000, () => {
-//   console.log('Server is running on port 3000');
-// });
-
-export const handler = serverless(app);
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
